@@ -2,6 +2,9 @@
 
 A bot for automatically updating roles on a discord server to the relevant rank roles
 
+## Disclaimer
+
+This is a fork of https://github.com/rocker1904/BeatSaberRankBot and modified for the german beatsaber discord
 
 ## Setup
 
@@ -34,4 +37,4 @@ Create a config.json of the following form in the root directory but with the fi
 * scoresaberRegion is two letter abbreviation for the region used in the scoresaber url for the top players in the region, ie for Great Britain the url is ``https://scoresaber.com/global?country=gb`` so the region code is ``gb``
 
 
-If you have any questions, feels free to send me a message on discord (Rocker#1234).
+If you have any questions about this fork contact me (Tom | ateRstones#1234) on discord
