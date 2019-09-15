@@ -7,9 +7,9 @@ db2.on('error', err => console.error('Keyv connection error:', err));
 
 module.exports = {
 	name: 'get-user',
-	description: 'Returns the corresponding user or scoresaber profile if they\'re in the database.',
+	description: 'Gibt den zugehörigen User, wenn er in den Datenbank ist.',
 	args: true,
-	usage: '<scoresaber profile>/<user>',
+	usage: '<scoresaber profil>/<user>',
 	staffOnly: true,
 	async execute(message, args, updater, server, client) {
 
@@ -40,7 +40,7 @@ module.exports = {
 
 					message.channel.send(`${user.tag} (id ${discordId})`);
 				} else {
-					message.channel.send('That profile isn\'t in the database.');
+					message.channel.send('Das Profil ist nicht in der Datenbank.');
 				}
 
 			// Not given Scoresaber profile
@@ -51,13 +51,13 @@ module.exports = {
 					await client.fetchUser(arg);
 					userId = arg;
 				} catch(err) {
-					message.channel.send('Please use a valid scoresaber profile or user id.');
+					message.channel.send('Bitte gebe ein valides Scoresaber-Profil an.');
 					return;
 				}
 
 				// This check is probably pointless as I think this point is unreachable with undefined userId
 				if (userId === undefined) {
-					message.channel.send('Please use a valid scoresaber profile or user id.');
+					message.channel.send('Bitte gebe ein valides Scoresaber-Profil / User an.');
 				}
 
 				// If user is in database, return associated Scoresaber profile
@@ -68,7 +68,7 @@ module.exports = {
 				if (scoresaber !== undefined) {
 					message.channel.send(`https://scoresaber.com${scoresaber}`);
 				} else {
-					message.channel.send('That user isn\'t in the database.');
+					message.channel.send('Der User ist nicht in der Datenbank.');
 				}
 			}
 
@@ -84,7 +84,7 @@ module.exports = {
 			if (scoresaber !== undefined) {
 				message.channel.send(`https://scoresaber.com${scoresaber}`);
 			} else {
-				message.channel.send('That user isn\'t in the database.');
+				message.channel.send('Der User ist nicht in der Datenbank.');
 			}
 
 		}

@@ -4,7 +4,7 @@ require('events').EventEmitter.defaultMaxListeners = 100;
 
 module.exports = {
 	name: 'update-roles',
-	description: 'Updates rank roles.',
+	description: 'Updatet die Rang Rollen.',
 	args: false,
 	guildOnly: true,
 	staffOnly: true,

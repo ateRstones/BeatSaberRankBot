@@ -9,10 +9,10 @@ db2.on('error', err => console.error('Keyv connection error:', err));
 
 module.exports = {
 	name: 'add-me',
-	description: 'Adds the user and their scoresaber profile to the database.',
+	description: 'Fügt einen User und dessen Scoresaber-Profil zur Datenbank hinzu',
 	args: true,
 	guildOnly: true,
-	usage: '<scoresaber profile>',
+	usage: '<Scoresaber Profil>',
 	async execute(message, args, updater, server) {
 
 		const userId = message.author.id;
@@ -23,7 +23,7 @@ module.exports = {
 		if (startOfId !== -1) {
 			scoresaber = scoresaber.slice(startOfId);
 		} else {
-			message.channel.send('Please use a valid scoresaber profile.');
+			message.channel.send('Gib bitte ein valides Scoresaber-Profil an.');
 			return;
 		}
 
@@ -48,7 +48,7 @@ module.exports = {
 			if (lookup2 === undefined) {
 				db1.set(scoresaber, userId).then(() => {
 					db2.set(userId, scoresaber).then(() => {
-						message.channel.send('Added user.');
+						message.channel.send('User hinzugefügt.');
 						// Get their guildMemeber object and use it to add region and rank roles
 						server.fetchMember(userId).then(guildMember => {
 							addRegionRole(scoresaber, guildMember);
@@ -63,10 +63,10 @@ module.exports = {
 					console.log(err);
 				});
 			} else {
-				message.channel.send('You\'ve already been added.');
+				message.channel.send('Du bist bereits eingetragen.');
 			}
 		} else {
-			message.channel.send('That Scoresaber profile has already been added.');
+			message.channel.send('Dieses Scoresaber-Profil wurde bereits registriert.');
 		}
 	},
 };

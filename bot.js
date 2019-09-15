@@ -75,23 +75,23 @@ client.on('message', message => {
 	if (!command) return;
 
 	if (command.staffOnly && !staff.includes(message.author.tag)) {
-		message.reply('this command is staff only.');
+		message.reply('Dieser Command ist nur die Admins.');
 		return;
 	}
 
 	if (command.guildOnly && message.channel.type !== 'text') {
-		return message.reply('I can only execute that command on the server.');
+		return message.reply('Dieser Command ist nur auf dem Server nutzbar.');
 	}
 
 	if (message.guild.id !== serverId) {
-		return message.reply('I can only execute that command on the server.');
+		return message.reply('Dieser Command ist nur auf dem Server nutzbar.');
 	}
 
 	if (command.args && !args.length) {
-		let reply = `You didn't provide any arguments, ${message.author}!`;
+		let reply = `Du hast keine Argumente angegeben, ${message.author}!`;
 
 		if (command.usage) {
-			reply += `\nThe proper usage would be: \`${prefix}${command.name} ${command.usage}\``;
+			reply += `\nDie korrekte Nutzung ist: \`${prefix}${command.name} ${command.usage}\``;
 		}
 
 		return message.channel.send(reply);
@@ -110,7 +110,7 @@ client.on('message', message => {
 
 		if (now < expirationTime) {
 			const timeLeft = (expirationTime - now) / 1000;
-			return message.reply(`please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \`${command.name}\` command.`);
+			return message.reply(`Bitte ${timeLeft.toFixed(1)} Sekunde(n) vor der nächsten Nutzung von \`${command.name}\` warten.`);
 		}
 	}
 
@@ -121,7 +121,7 @@ client.on('message', message => {
 		command.execute(message, args, updater, server, client, regionalPlayers);
 	} catch (error) {
 		console.error(error);
-		message.reply('there was an error trying to execute that command!');
+		message.reply('Bei der Commandausführung ist ein Fehler aufgetreten.');
 	}
 });
 

@@ -8,7 +8,7 @@ db2.on('error', err => console.error('Keyv connection error:', err));
 
 module.exports = {
 	name: 'oce-rank',
-	description: 'Returns your regional rank.',
+	description: 'Gibt deinen regionalen Rang.',
 	args: false,
 	guildOnly: true,
 	staffOnly: false,
@@ -20,7 +20,7 @@ module.exports = {
 		});
 
 		if (scoresaber === undefined) {
-			message.channel.send('You are not in the database.');
+			message.channel.send('Du bist nicht in der Datenbank.');
 			return;
 		}
 
@@ -38,9 +38,9 @@ module.exports = {
 		}
 
 		if (regionalRank) {
-			message.channel.send(`Your ${regionName} rank is ${regionalRank}!`);
+			message.channel.send(`Dein ${regionName} Rang ist ${regionalRank}!`);
 		} else {
-			message.channel.send(`You are not in the top ${numPlayersToScrape} ${regionName}`);
+			message.channel.send(`Du bist nicht in den Top ${numPlayersToScrape} ${regionName}`);
 		}
 	},
 };

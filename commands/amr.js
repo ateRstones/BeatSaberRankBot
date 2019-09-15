@@ -6,7 +6,7 @@ db2.on('error', err => console.error('Keyv connection error:', err));
 
 module.exports = {
 	name: 'amr',
-	description: 'Returns the pp diff of you and the people around you in your region.',
+	description: 'Gibt die PP Differenz zu anderen Spieler aus deiner Region um deinen Rank herum',
 	args: false,
 	guildOnly: true,
 	async execute(message) {
@@ -16,7 +16,7 @@ module.exports = {
 		});
 
 		if (commandUserScoresaber == null) {
-			message.channel.send('You are not in the database.');
+			message.channel.send('Du bist nicht in der Datenbank.');
 			return;
 		}
 
@@ -33,7 +33,7 @@ module.exports = {
 		const lowerPlayerName = lowerPlayerData[4];
 
 		if (commandUserRegionalRank === 1) {
-			message.channel.send(`You are ${(commandUserPP - lowerPlayerPP).toFixed(2)}PP above ${lowerPlayerName}`);
+			message.channel.send(`Du bist ${(commandUserPP - lowerPlayerPP).toFixed(2)}PP über ${lowerPlayerName}`);
 			return;
 		}
 
@@ -48,6 +48,6 @@ module.exports = {
 			commandUserName = 'Al-PooPoo-Ccino';
 		}
 
-		message.channel.send(`__**${commandUserRegion.toUpperCase()} ranks around you:**__\n#${higherPlayerRegionalRank} **${higherPlayerName}** has ${(higherPlayerPP - commandUserPP).toFixed(2)} more PP than you.\n#${commandUserRegionalRank} **You (${commandUserName})** have ${commandUserPP}PP.\n#${lowerPlayerRegionalRank} **${lowerPlayerName}** has ${(commandUserPP - lowerPlayerPP).toFixed(2)} less PP than you.`);
+		message.channel.send(`__**${commandUserRegion.toUpperCase()} Ränge um dich herum:**__\n#${higherPlayerRegionalRank} **${higherPlayerName}** hat ${(higherPlayerPP - commandUserPP).toFixed(2)}PP mehr als du.\n#${commandUserRegionalRank} **Du (${commandUserName})** hast ${commandUserPP}PP.\n#${lowerPlayerRegionalRank} **${lowerPlayerName}** hat ${(commandUserPP - lowerPlayerPP).toFixed(2)}PP weniger als du.`);
 	},
 };

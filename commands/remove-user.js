@@ -7,7 +7,7 @@ db2.on('error', err => console.error('Keyv connection error:', err));
 
 module.exports = {
 	name: 'remove-user',
-	description: 'Removes the user or scoresaber profile from the database.',
+	description: 'Entfernt einen User oder Scoresaber Profil von der Datenbank',
 	args: true,
 	usage: '<scoresaber profile>/<user>',
 	staffOnly: true,
@@ -27,7 +27,7 @@ module.exports = {
 				try {
 					await db2.get(arg);
 				} catch(err) {
-					message.channel.send('Please use a valid scoresaber profile or user id.');
+					message.channel.send('Bitte gebe ein valides Scoresaber-Profil / User an.');
 					return;
 				}
 				userId = arg;
@@ -49,7 +49,7 @@ module.exports = {
 				if (discordId !== undefined) {
 					db1.delete(scoresaber).then(() => {
 						db2.delete(discordId).then(() => {
-							message.channel.send('Deleted user.');
+							message.channel.send('User gelöscht.');
 						}).catch(err => {
 							console.log(err);
 						});
@@ -57,7 +57,7 @@ module.exports = {
 						console.log(err);
 					});
 				} else {
-					message.channel.send('That profile isn\'t in the database.');
+					message.channel.send('Das Profil ist nicht in der Datenbank.');
 				}
 
 			// If given user id instead
@@ -68,7 +68,7 @@ module.exports = {
 				if (scoresaber !== undefined) {
 					db1.delete(scoresaber).then(() => {
 						db2.delete(userId).then(() => {
-							message.channel.send('Deleted user.');
+							message.channel.send('User gelöscht.');
 						}).catch(err => {
 							console.log(err);
 						});
@@ -76,7 +76,7 @@ module.exports = {
 						console.log(err);
 					});
 				} else {
-					message.channel.send('That user isn\'t in the database.');
+					message.channel.send('Der User ist nicht in der Datenbank.');
 				}
 			}
 
@@ -91,7 +91,7 @@ module.exports = {
 			if (scoresaber !== undefined) {
 				db1.delete(scoresaber).then(() => {
 					db2.delete(userId).then(() => {
-						message.channel.send('Deleted user.');
+						message.channel.send('User gelöscht.');
 					}).catch(err => {
 						console.log(err);
 					});
@@ -99,7 +99,7 @@ module.exports = {
 					console.log(err);
 				});
 			} else {
-				message.channel.send('That user isn\'t in the database.');
+				message.channel.send('Der User ist nicht in der Datenbank.');
 			}
 		}
 	},

@@ -5,7 +5,7 @@ db2.on('error', err => console.error('Keyv connection error:', err));
 
 module.exports = {
 	name: 'profile',
-	description: 'Returns your profile.',
+	description: 'Gibt dein Profil.',
 	args: false,
 	async execute(message) {
 
@@ -15,10 +15,10 @@ module.exports = {
 		});
 
 		if (scoresaber == null) {
-			message.channel.send('You are not in the database.');
+			message.channel.send('Du bist nicht in der Datenbank.');
 			return;
 		}
 
-		message.channel.send(`Your ScoreSaber profile: https://scoresaber.com${scoresaber}`);
+		message.channel.send(`Dein Scoresaber Profil: https://scoresaber.com${scoresaber}`);
 	},
 };

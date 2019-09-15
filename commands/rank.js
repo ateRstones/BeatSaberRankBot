@@ -6,7 +6,7 @@ db2.on('error', err => console.error('Keyv connection error:', err));
 
 module.exports = {
 	name: 'rank',
-	description: 'Returns your regional rank.',
+	description: 'Gibt deinen Regionalen Rang.',
 	args: false,
 	guildOnly: true,
 	staffOnly: false,
@@ -18,7 +18,7 @@ module.exports = {
 		});
 
 		if (scoresaber === undefined) {
-			message.channel.send('You are not in the database.');
+			message.channel.send('Du bist nicht in der Datenbank.');
 			return;
 		}
 
@@ -28,6 +28,6 @@ module.exports = {
 			message.channel.send(`You are #${playerData[0]} ${playerData[1].toUpperCase()} (#${playerData[2]} global) but really the best player in the world :heart:`);
 			return;
 		}
-		message.channel.send(`You are #${playerData[0]} ${playerData[1].toUpperCase()} (#${playerData[2]} global)`);
+		message.channel.send(`Du bist #${playerData[0]} ${playerData[1].toUpperCase()} (#${playerData[2]} Global)`);
 	},
 };

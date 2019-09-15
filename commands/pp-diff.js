@@ -6,7 +6,7 @@ db2.on('error', err => console.error('Keyv connection error:', err));
 
 module.exports = {
 	name: 'pp-diff',
-	description: 'Returns the difference in pp between you and a given player.',
+	description: 'Gibt die PP Differenz zwischen dir und einem anderem Spieler.',
 	args: false,
 	async execute(message, args) {
 
@@ -16,7 +16,7 @@ module.exports = {
 		});
 
 		if (commandUserScoresaber == null) {
-			message.channel.send('You are not in the database.');
+			message.channel.send('Du bist nicht in der Datenbank.');
 			return;
 		}
 
@@ -48,31 +48,31 @@ module.exports = {
 				const regionIndex = arg.indexOf(region);
 				// Check if both characters are together
 				if (regionIndex === -1) {
-					message.channel.send('Please give a ScoreSaber profile or rank');
+					message.channel.send('Bitte gib ein Scoresaber Profil oder Rang');
 					return;
 				}
 				// Check if characters have no following numbers
 				if (arg.slice(regionIndex).length !== 2) {
-					message.channel.send('Please give a ScoreSaber profile or rank');
+					message.channel.send('Bitte gib ein Scoresaber Profil oder Rang');
 					return;
 				}
 				const rank = parseInt(arg.replace(/\D/g, ''));
 				targetUserScoresaber = await scraper.getPlayerAtRank(rank, region);
 
 			} else {
-				message.channel.send('Please give a ScoreSaber profile or rank');
+				message.channel.send('Bitte gib ein Scoresaber Profil oder Rang');
 				return;
 			}
 
 			if (!targetUserScoresaber) {
-				message.channel.send('A player of that rank does not exist.');
+				message.channel.send('In Spieler mit dem Rang existiert nicht.');
 				return;
 			}
 		}
 
 		if (targetUserScoresaber === commandUserScoresaber) {
 			// PUT HEAD EMOTE IN HERE
-			message.channel.send('You have the same PP as yourself.');
+			message.channel.send('<:waliwut:583036992158171156>');
 			return;
 		}
 
@@ -83,11 +83,11 @@ module.exports = {
 		const PPDiff = Math.abs(targetUserPP - commandUserPP).toFixed(2);
 
 		if (targetUserPP > commandUserPP) {
-			message.channel.send(`${targetUserName} has ${PPDiff} more PP than you.`);
+			message.channel.send(`${targetUserName} hat ${PPDiff}PP mehr als du.`);
 		} else if (targetUserPP < commandUserPP) {
-			message.channel.send(`You have ${PPDiff} more PP than ${targetUserName}`);
+			message.channel.send(`Du hast ${PPDiff}PP mehr als ${targetUserName}`);
 		} else {
-			message.channel.send(`You have the same PP as ${targetUserName}.`);
+			message.channel.send(`Du hast genau so viel PP wie ${targetUserName}.`);
 		}
 	},
 };

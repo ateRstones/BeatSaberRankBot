@@ -4,6 +4,6 @@ module.exports = {
 	args: false,
 	staffOnly: true,
 	execute(message) {
-		message.channel.send('Pong.');
+		message.channel.send('\'Pong\' in german');
 	},
 };
