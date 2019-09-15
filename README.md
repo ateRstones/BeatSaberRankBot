@@ -38,3 +38,5 @@ Create a config.json of the following form in the root directory but with the fi
 
 
 If you have any questions about this fork contact me (Tom | ateRstones#1234) on discord
+
+The original author is (Rocker#1234)
