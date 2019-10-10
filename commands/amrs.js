@@ -22,8 +22,7 @@ module.exports = {
 			message.channel.send('Du bist nicht in der Datenbank.');
 			return;
 		}
-
-		// TODO Add multiregion support (DE CH A)
+		
 		let regionName;
 		if (customRegionName !== '') {
 			regionName = customRegionName;
