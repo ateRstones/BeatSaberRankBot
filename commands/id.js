@@ -5,7 +5,7 @@ db2.on('error', err => console.error('Keyv connection error:', err));
 
 module.exports = {
 	name: 'id',
-	description: 'Gibt deiner Scoresaber-Id.',
+	description: 'Gibt deine Scoresaber-Id.',
 	args: false,
 	async execute(message) {
 

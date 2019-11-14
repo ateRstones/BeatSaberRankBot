@@ -7,7 +7,8 @@ db2.on('error', err => console.error('Keyv connection error:', err));
 module.exports = {
 	name: 'pp-diff',
 	description: 'Gibt die PP Differenz zwischen dir und einem anderem Spieler.',
-	args: false,
+	args: true,
+	usage: "<global-rank>",
 	async execute(message, args) {
 
 		// If user is in database, return associated Scoresaber profile
@@ -24,6 +25,7 @@ module.exports = {
 		const commandUserPP = commandUserData[3];
 		let targetUserScoresaber;
 
+		// TypeError: Cannot read property 'toLowerCase' of undefined
 		const arg = args[0].toLowerCase().replace(',', '');
 
 		const startOfId = arg.indexOf('/u/');
@@ -65,7 +67,7 @@ module.exports = {
 			}
 
 			if (!targetUserScoresaber) {
-				message.channel.send('In Spieler mit dem Rang existiert nicht.');
+				message.channel.send('Ein Spieler mit dem Rang existiert nicht.');
 				return;
 			}
 		}

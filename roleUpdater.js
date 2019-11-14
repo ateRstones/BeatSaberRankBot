@@ -117,7 +117,7 @@ module.exports = {
 				if (rankUpdateChannelId !== '' && rankUpdateChannelId !== undefined) {
 					const rankUpdateChannel = guild.channels.get(rankUpdateChannelId);
 					if (rankUpdateChannel !== undefined) {
-						rankUpdateChannel.send(`${guildMember.user.username} ist in den Rank ${addedRole.name} aufgestiegen!`);
+						rankUpdateChannel.send(`${guildMember.user.username} ist in die ${addedRole.name} aufgestiegen!`);
 					}
 				}
 			}

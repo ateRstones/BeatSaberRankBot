@@ -83,7 +83,7 @@ client.on('message', message => {
 		return message.reply('Dieser Command ist nur auf dem Server nutzbar.');
 	}
 
-	if (message.guild.id !== serverId) {
+	if (message.guild !== null && message.guild.id !== serverId) {
 		return message.reply('Dieser Command ist nur auf dem Server nutzbar.');
 	}
 
