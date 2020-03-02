@@ -3,6 +3,12 @@ const numPlayersToScrape = require('./config.json').numPlayersToScrape;
 const rp = require('request-promise');
 const $ = require('cheerio');
 
+//https://regex101.com
+const ppMatch = /<li><strong>Performance Points:<\/strong> ([0-9,\.]+)pp<\/li>/
+const globalRankMatch = /<a href="\/global">#([\d,]+)<\/a>/
+const regionMatch = /<a href="\/global\?country=([^"]+)"><img src=\"\/imports\/images\/flags\/[^"]*.png" \/> #([\d,]+)<\/a>/
+const nameMatch = /meta property="og:title" content="(.+)'s profile" \/>/
+
 module.exports = {
 
 	async getPlayers() {
@@ -75,48 +81,27 @@ module.exports = {
 	},
 
 	async getPlayerData(scoresaber) {
-		const url = 'https://scoresaber.com' + scoresaber;
-		let regionRank;
-		let region;
-		let globalRank;
-		let pp;
-		let name;
-		await rp(url)
-			.then(html => {
-				const ul = $('ul', html).slice(0, 1);
-
-				const lis = $('li', ul);
-				let rankingLi;
-				for (let i = 0; i < lis.length; i++) {
-					rankingLi = lis.slice(i, i + 1);
-					const strong = $('strong', rankingLi).slice(0, 1);
-					if (strong.text() === 'Player Ranking:') break;
-				}
-
-				const links = $('a', rankingLi);
-				const regionLink = links.slice(-1).attr('href');
-				region = regionLink.slice(-2);
-
-				const a = $('a', html);
-				globalRank = parseInt(a.slice(7, 8).text().slice(1).replace(',', ''));
-				regionRank = parseInt(a.slice(8, 9).text().slice(2).replace(',', ''));
-
-				let ppLi;
-				for (let i = 0; i < lis.length; i++) {
-					ppLi = lis.slice(i, i + 1);
-					const strong = $('strong', ppLi).slice(0, 1);
-					if (strong.text() === 'Performance Points:') break;
-				}
-
-				pp = parseFloat(ppLi.text().replace(',', '').replace('pp', '').replace(/\s/g, '').replace('PerformancePoints:', ''));
-
-				name = a.slice(6, 7).text().trim();
-			})
-			.catch(err => {
-				console.log(err);
-			});
-		return [regionRank, region, globalRank, pp, name];
-	},
+        const url = 'https://scoresaber.com' + scoresaber;
+        let regionRank;
+        let region;
+        let globalRank;
+        let pp;
+        let name;
+        await rp(url)
+            .then(html => {
+				globalRank = parseInt(globalRankMatch.exec(html)[1].replace(",", ""))
+				let regionRes = regionMatch.exec(html)
+				regionRank = parseInt(regionRes[2].replace(",", ""))
+				region = regionRes[1]
+				pp = ppMatch.exec(html)[1]
+				pp = parseFloat(pp.replace(',', '').replace('pp', ''));
+				name = nameMatch.exec(html)[1]
+            })
+            .catch(err => {
+                console.log(err);
+            });
+        return [regionRank, region, globalRank, pp, name];
+    },
 
 	async getPlayerAtRank(rank, region = false) {
 		let pageToScrape = Math.ceil(rank / 50);
